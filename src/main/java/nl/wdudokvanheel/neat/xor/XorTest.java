@@ -12,15 +12,13 @@ public class XorTest {
 
     public NeatConfiguration getConfiguration() {
         NeatConfiguration cfg = new NeatConfiguration();
-        cfg = new NeatConfiguration();
-
         cfg.populationSize = 1000;
         cfg.targetSpecies = 50;
         cfg.newCreaturesPerGeneration = 0.0;
         cfg.mutateAddNeuronProbability = 0.03;
         cfg.mutateWeightProbability = 0.80;
         cfg.minimumSpeciesSizeForChampionCopy = 1;
-        cfg.copyChampionsAllSpecies = false;
+        cfg.copyChampionsAllSpecies = true;
         cfg.adjustSpeciesThreshold = false;
         cfg.setInitialLinks = true;
         cfg.speciesThreshold = 7.5;
