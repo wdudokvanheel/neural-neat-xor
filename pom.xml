@@ -6,7 +6,7 @@
 
     <groupId>nl.wdudokvanheel</groupId>
     <artifactId>neat-xor</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <properties>
         <maven.compiler.source>24</maven.compiler.source>
@@ -17,9 +17,7 @@
         <dependency>
             <groupId>nl.wdudokvanheel</groupId>
             <artifactId>neat</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
-
 </project>
