@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.concurrent.*;
 
 public class Main {
-    public static final int RUNS = 10000;
+    public static final int RUNS = 100;
     public static final int MAX_GENERATIONS = 300;
 
     public static void main(String[] args) {

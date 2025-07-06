@@ -1,8 +1,8 @@
 package nl.wdudokvanheel.neat.xor;
 
-import nl.wdudokvanheel.neural.core.Network;
-import nl.wdudokvanheel.neural.neat.AbstractCreature;
-import nl.wdudokvanheel.neural.neat.model.Genome;
+import nl.wdudokvanheel.neural.neat.genome.Genome;
+import nl.wdudokvanheel.neural.network.Network;
+import nl.wdudokvanheel.neural.util.AbstractCreature;
 
 public class XORCreature extends AbstractCreature {
     private final Network network;

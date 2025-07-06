@@ -1,7 +1,7 @@
 package nl.wdudokvanheel.neat.xor;
 
-import nl.wdudokvanheel.neural.CreatureFactory;
-import nl.wdudokvanheel.neural.neat.model.Genome;
+import nl.wdudokvanheel.neural.neat.CreatureFactory;
+import nl.wdudokvanheel.neural.neat.genome.Genome;
 
 public class XORCreatureFactory implements CreatureFactory<XORCreature> {
     @Override
