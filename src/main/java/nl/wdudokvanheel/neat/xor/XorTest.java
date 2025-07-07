@@ -5,8 +5,8 @@ import nl.wdudokvanheel.neural.neat.NeatContext;
 import nl.wdudokvanheel.neural.neat.NeatEvolution;
 import nl.wdudokvanheel.neural.neat.genome.ConnectionGene;
 import nl.wdudokvanheel.neural.neat.genome.Genome;
-import nl.wdudokvanheel.neural.neat.genome.NeuronGene;
-import nl.wdudokvanheel.neural.neat.genome.NeuronGeneType;
+import nl.wdudokvanheel.neural.neat.genome.InputNeuronGene;
+import nl.wdudokvanheel.neural.neat.genome.OutputNeuronGene;
 import nl.wdudokvanheel.neural.neat.service.InnovationService;
 import nl.wdudokvanheel.neural.network.Network;
 
@@ -109,10 +109,10 @@ public class XorTest {
         int bias = innovation.getInputNodeInnovationId(2);
         int output = innovation.getOutputNodeInnovationId(0);
 
-        genome.addNeuron(new NeuronGene(NeuronGeneType.INPUT, input0));
-        genome.addNeuron(new NeuronGene(NeuronGeneType.INPUT, input1));
-        genome.addNeuron(new NeuronGene(NeuronGeneType.INPUT, bias));
-        genome.addNeuron(new NeuronGene(NeuronGeneType.OUTPUT, output));
+        genome.addNeuron(new InputNeuronGene(input0));
+        genome.addNeuron(new InputNeuronGene(input1));
+        genome.addNeuron(new InputNeuronGene(bias));
+        genome.addNeuron(new OutputNeuronGene(output));
 
         genome.addConnection(new ConnectionGene(innovation.getConnectionInnovationId(input0, output), input0, output, randomWeight()));
         genome.addConnection(new ConnectionGene(innovation.getConnectionInnovationId(input1, output), input1, output, randomWeight()));
