@@ -1,6 +1,5 @@
 package nl.wdudokvanheel.neat.xor;
 
-import nl.wdudokvanheel.neural.neat.Creature;
 import nl.wdudokvanheel.neural.neat.NeatConfiguration;
 import nl.wdudokvanheel.neural.neat.NeatContext;
 import nl.wdudokvanheel.neural.neat.NeatEvolution;
@@ -16,7 +15,7 @@ import java.util.Random;
 public class XorTest {
     private final Random r = new Random();
 
-    public NeatConfiguration getConfiguration() {
+    public NeatConfiguration createConfiguration() {
         NeatConfiguration cfg = new NeatConfiguration();
         cfg.populationSize = 1000;
         cfg.speciesThreshold = 7.5;
@@ -39,32 +38,33 @@ public class XorTest {
     }
 
     public int run() {
-        XORCreatureFactory f = new XORCreatureFactory();
-        NeatContext ctx = NeatEvolution.createContext(f, getConfiguration());
-        Genome g = blueprint(ctx.innovationService);
-        XORCreature bp = new XORCreature(g);
-        NeatEvolution.generateInitialPopulation(ctx, bp);
+        XORCreatureFactory factory = new XORCreatureFactory();
+        NeatConfiguration configuration = createConfiguration();
+        NeatContext<XORCreature> context = NeatEvolution.createContext(factory, configuration);
 
-        for (int gen = 0; gen < Main.MAX_GENERATIONS; gen++) {
-            scorePopulation(ctx);
+        Genome blueprintGenome = blueprint(context.innovationService);
+        XORCreature blueprint = new XORCreature(blueprintGenome);
+        NeatEvolution.generateInitialPopulation(context, blueprint);
 
-            for (Creature cr : ctx.creatures) {
-                XORCreature xc = (XORCreature) cr;
-                if (canSolveXor(xc.getNetwork())) {
-                    return gen;
+        for (int generation = 0; generation < Main.MAX_GENERATIONS; generation++) {
+            scorePopulation(context);
+
+            for (XORCreature creature : context.creatures) {
+                if (canSolveXor(creature.getNetwork())) {
+                    return generation;
                 }
             }
 
-            NeatEvolution.nextGeneration(ctx);
+            NeatEvolution.nextGeneration(context);
         }
 
         return Main.MAX_GENERATIONS;
     }
 
-    private void scorePopulation(NeatContext c) {
-        for (Creature cr : c.creatures) {
-            XORCreature xc = (XORCreature) cr;
-            xc.setFitness(fitness(xc.getNetwork()));
+    private void scorePopulation(NeatContext<XORCreature> c) {
+        for (XORCreature creature : c.creatures) {
+            double fitness = fitness(creature.getNetwork());
+            creature.setFitness(fitness);
         }
     }
 
