@@ -25,6 +25,8 @@ public class XorTest {
         cfg.copyChampionsAllSpecies = true;
 
         cfg.setInitialLinks = true;
+        cfg.initialLinkActiveProbability = 1.0;
+        cfg.initialLinkWeight = 4.0;
         cfg.eliminateStagnantSpecies = true;
 
         cfg.multipleMutationsPerGenome = true;
