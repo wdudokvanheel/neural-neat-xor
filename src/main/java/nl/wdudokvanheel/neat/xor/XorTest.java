@@ -3,10 +3,10 @@ package nl.wdudokvanheel.neat.xor;
 import nl.wdudokvanheel.neural.neat.NeatConfiguration;
 import nl.wdudokvanheel.neural.neat.NeatContext;
 import nl.wdudokvanheel.neural.neat.NeatEvolution;
-import nl.wdudokvanheel.neural.neat.genome.ConnectionGene;
 import nl.wdudokvanheel.neural.neat.genome.Genome;
 import nl.wdudokvanheel.neural.neat.genome.InputNeuronGene;
 import nl.wdudokvanheel.neural.neat.genome.OutputNeuronGene;
+import nl.wdudokvanheel.neural.neat.service.GenomeBuilder;
 import nl.wdudokvanheel.neural.neat.service.InnovationService;
 import nl.wdudokvanheel.neural.network.Network;
 
@@ -103,22 +103,15 @@ public class XorTest {
     }
 
     private Genome blueprint(InnovationService innovation) {
-        Genome genome = new Genome();
-        int input0 = innovation.getInputNodeInnovationId(0);
-        int input1 = innovation.getInputNodeInnovationId(1);
-        int bias = innovation.getInputNodeInnovationId(2);
-        int output = innovation.getOutputNodeInnovationId(0);
+        GenomeBuilder builder = new GenomeBuilder(innovation);
+        InputNeuronGene[] inputs = builder.addInputNeurons(3);
+        OutputNeuronGene[] outputs = builder.addOutputNeurons(1);
 
-        genome.addNeuron(new InputNeuronGene(input0));
-        genome.addNeuron(new InputNeuronGene(input1));
-        genome.addNeuron(new InputNeuronGene(bias));
-        genome.addNeuron(new OutputNeuronGene(output));
+        builder.addConnection(inputs[0], outputs[0], randomWeight());
+        builder.addConnection(inputs[1], outputs[0], randomWeight());
+        builder.addConnection(inputs[2], outputs[0], randomWeight());
 
-        genome.addConnection(new ConnectionGene(innovation.getConnectionInnovationId(input0, output), input0, output, randomWeight()));
-        genome.addConnection(new ConnectionGene(innovation.getConnectionInnovationId(input1, output), input1, output, randomWeight()));
-        genome.addConnection(new ConnectionGene(innovation.getConnectionInnovationId(bias, output), bias, output, randomWeight()));
-
-        return genome;
+        return builder.getGenome();
     }
 
     private double randomWeight() {
