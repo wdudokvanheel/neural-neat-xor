@@ -24,14 +24,14 @@ public class XorTest {
         cfg.minimumSpeciesSizeForChampionCopy = 1;
         cfg.copyChampionsAllSpecies = true;
 
-        cfg.setInitialLinks = true;
+        cfg.randomizeInitialLinks = true;
         cfg.initialLinkActiveProbability = 1.0;
-        cfg.initialLinkWeight = 4.0;
-        cfg.eliminateStagnantSpecies = true;
+        cfg.initialLinkWeight = 1.0;
+        cfg.eliminateStagnantSpecies = false;
 
         cfg.multipleMutationsPerGenome = true;
-        cfg.mutateAddConnectionProbability = 0.05;
-        cfg.mutateAddNeuronProbability = 0.03;
+        cfg.mutateAddConnectionProbability = 0.20;
+        cfg.mutateAddNeuronProbability = 0.10;
         cfg.mutateRandomizeWeightsProbability = 0.1;
         cfg.mutateWeightProbability = 0.80;
         cfg.mutateWeightPerturbationPower = 0.5;
