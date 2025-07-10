@@ -34,13 +34,13 @@ mvn clean compile exec:java \
 
 | Metric              |    Value |
 | ------------------- |---------:|
-| Runs                |    1 000 |
+| Runs                |  100 000 |
 | Success rate        | 100.00 % |
-| Average generations |    20.07 |
-| Min generations     |        5 |
-| Max generations     |       48 |
+| Average generations |    19.91 |
+| Min generations     |        2 |
+| Max generations     |      130 |
 | Median generations  |    19.00 |
-| StdDev generations  |     5.92 |
+| StdDev generations  |     5.75 |
 
 ## Project Structure
 
